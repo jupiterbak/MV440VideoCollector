@@ -10,14 +10,9 @@ var PictureFrameFilter = require("./lib/PictureFrameFilter");
 var AcknowledgeFrameFilter = require("./lib/AcknowledgeFrameFilter");
 var FinishedFrameType = require("./lib/FinishedFrameType");
 var frameType = require('./lib/Frame');
-var lastFrame = null;
-var lastSocket = null;
-var stackInstance = new stack(
-    function (params,socket) {
-        console.log("New Frame: " + JSON.stringify(params));
-        lastFrame = params;
-        lastSocket = socket;
-    });
+var sending = false;
+
+var stackInstance = new stack();
 
 stackInstance.addLayer(new TCPPHY(8765, "192.168.1.53"));
 stackInstance.addLayer(new FrameCollector());
@@ -30,10 +25,16 @@ stackInstance.addLayer(new CommandoFrameFilter());
 stackInstance.addLayer(new DataFrameFilter());
 stackInstance.addLayer(new PictureFrameFilter());
 
-stackInstance.start();
+stackInstance.start(function (params,socket) {
+    console.log("New Frame: " + JSON.stringify(params));
+    if(!sending){
+        stackInstance.transmit(new frameType(frameType.FRAMEHEADERID, params.header.Seq++, frameType.FRAMEHEADERVERSION, frameType.REQUESTFLAG, frameType.CMDSTARTSEND, Buffer.alloc(0)), socket);
+        sending = true;
+    }
+});
 
- setTimeout(function(params) {
-     stackInstance.transmit(new frameType(frameType.FRAMEHEADERID, lastFrame.header.Seq, frameType.FRAMEHEADERVERSION, frameType.REQUESTFLAG, frameType.CMDSTARTSEND, Buffer.alloc(0)), lastSocket);
+//  setTimeout(function(params) {
+//      stackInstance.transmit(new frameType(frameType.FRAMEHEADERID, lastFrame.header.Seq, frameType.FRAMEHEADERVERSION, frameType.REQUESTFLAG, frameType.CMDSTOPSEND, Buffer.alloc(0)), lastSocket);
 
- }, 20000);
+//  }, 20000);
 
