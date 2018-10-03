@@ -1,0 +1,24 @@
+{
+  "name": "node-mv4x0",
+  "version": "1.0.0",
+  "description": "A package to receive images of the Siemens Simatic MV440",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "S7",
+    "MV440",
+    "Siemens",
+    "BITMAP"
+  ],
+  "author": "Jupiter Bakakeu",
+  "engines": {
+    "node": ">=4"
+  },
+  "readmeFilename": "README.md",
+  "license": "MIT",
+  "dependencies": {
+    "shortid": "^2.2.13"
+  }
+}
