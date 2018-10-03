@@ -11,10 +11,12 @@ var AcknowledgeFrameFilter = require("./lib/AcknowledgeFrameFilter");
 var FinishedFrameType = require("./lib/FinishedFrameType");
 var frameType = require('./lib/Frame');
 var lastFrame = null;
+var lastSocket = null;
 var stackInstance = new stack(
     function (params,socket) {
         console.log("New Frame: " + JSON.stringify(params));
         lastFrame = params;
+        lastSocket = socket;
     });
 
 stackInstance.addLayer(new TCPPHY(8765, "192.168.1.53"));
@@ -31,7 +33,7 @@ stackInstance.addLayer(new PictureFrameFilter());
 stackInstance.start();
 
  setTimeout(function(params) {
-     stackInstance.transmit(new frameType(frameType.FRAMEHEADERID, lastFrame.header.Seq, frameType.FRAMEHEADERVERSION, frameType.REQUESTFLAG, frameType.CMDSTARTSEND, Buffer.alloc(0)), lastframe.socket);
+     stackInstance.transmit(new frameType(frameType.FRAMEHEADERID, lastFrame.header.Seq, frameType.FRAMEHEADERVERSION, frameType.REQUESTFLAG, frameType.CMDSTARTSEND, Buffer.alloc(0)), lastSocket);
 
  }, 20000);
 
