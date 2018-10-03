@@ -11,10 +11,6 @@ var PictureFrameFilter = require("./lib/PictureFrameFilter");
 var stackInstance = new stack(
     function (params) {
         
-    }, function (params) {
-        
-    }, function (params) {
-        
     });
 
 stackInstance.addLayer(new TCPPHY(8080));
