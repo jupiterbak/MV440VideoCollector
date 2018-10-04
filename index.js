@@ -1,4 +1,3 @@
-var bmp = require("bmp-js");
 var fs = require('fs');
 var imageCounter = 0;
 

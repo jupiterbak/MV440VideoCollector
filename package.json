@@ -20,7 +20,6 @@
   "readmeFilename": "README.md",
   "license": "MIT",
   "dependencies": {
-    "bmp-js": "^0.1.0",
     "shortid": "^2.2.13"
   }
 }
