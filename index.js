@@ -1,3 +1,8 @@
+var bmp = require("bmp-js");
+var fs = require('fs');
+var imageCounter = 0;
+
+
 var stack = require("./lib/ProtocolStack");
 var TCPPHY = require("./lib/TCPPHY");
 var FrameCollector = require("./lib/FrameCollector");
@@ -25,12 +30,26 @@ stackInstance.addLayer(new CommandoFrameFilter());
 stackInstance.addLayer(new DataFrameFilter());
 stackInstance.addLayer(new PictureFrameFilter());
 
-stackInstance.start(function (params,socket) {
-    console.log("New Frame: " + JSON.stringify(params));
-    if(!sending){
+
+
+stackInstance.start(function (params, socket) {
+
+    if (!sending) {
         stackInstance.transmit(new frameType(frameType.FRAMEHEADERID, params.header.Seq++, frameType.FRAMEHEADERVERSION, frameType.REQUESTFLAG, frameType.CMDSTARTSEND, Buffer.alloc(0)), socket);
         sending = true;
     }
+
+    // save the image    
+    if(params.data.length >= 1024 * 768){
+        //var rawData = bmp.encode({ data: params.data, width: 1024, height: 768 });
+        
+        fs.writeFileSync(__dirname +'/data/image_' + imageCounter + '.bmp', params.data);
+        imageCounter = (imageCounter +1)% 12;
+    }else{
+        console.log("New Frame: " + JSON.stringify(params));
+    }
+
+
 });
 
 //  setTimeout(function(params) {

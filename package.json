@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":" node index.js"
+    "start": " node index.js"
   },
   "keywords": [
     "S7",
@@ -20,6 +20,7 @@
   "readmeFilename": "README.md",
   "license": "MIT",
   "dependencies": {
+    "bmp-js": "^0.1.0",
     "shortid": "^2.2.13"
   }
 }
