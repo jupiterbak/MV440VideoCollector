@@ -1,6 +1,6 @@
 # MV440 Video Collector
 
-The following project provide an implementation of the MMI-Protocol used by all Siemens Code-reading camera of the familly MVx40
+The following project provides an implementation of the MMI-Protocol used by all Siemens Code-reading camera of the familly MVx40
 
 ## Prerequisites
 
