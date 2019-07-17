@@ -22,7 +22,7 @@ npm start
 
 ## Authors
 
-* **Jupiter Bakakeu** - *Initial work* - [FAPS - Siemens](https://faps.de) – Jupiter.Bakakeu@gmail.com
+* **Jupiter Bakakeu** - *Initial work* - [FAPS - Siemens](https://faps.fau.de) – Jupiter.Bakakeu@gmail.com
 
 ## License
 
