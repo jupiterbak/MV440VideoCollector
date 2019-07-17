@@ -1,6 +1,39 @@
+/**
+ * Copyright 2018 FAPS.
+ * 
+ * File: index.js
+ * Author:
+ *  - Jupiter Bakakeu
+ *
+ * This program is free software: you can redistribute it and/or modify  
+ * it under the terms of the GNU General Public License as published by  
+ * the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful, but 
+ * WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License 
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * --------------------------------------------------------------------
+ * ###################### Changes #####################################
+ * -- 28.11.2017
+ *      Initial implementation
+ * --------------------------------------------------------------------
+ **/
+
 var fs = require('fs');
 var imageCounter = 0;
 
+var IP_ADDRESS = "192.168.1.53";
+var PORT = 8765
+
+/**
+The following implementation follows the protocol stack design pattern. 
+Therefore the MMI-Server is a stack of layers that can be extended as need
+*/
 
 var stack = require("./lib/ProtocolStack");
 var TCPPHY = require("./lib/TCPPHY");
@@ -18,7 +51,7 @@ var sending = false;
 
 var stackInstance = new stack();
 
-stackInstance.addLayer(new TCPPHY(8765, "192.168.1.53"));
+stackInstance.addLayer(new TCPPHY(PORT, IP_ADDRESS));
 stackInstance.addLayer(new FrameCollector());
 stackInstance.addLayer(new FrameDecoder());
 stackInstance.addLayer(new IdleFrameFilter());
