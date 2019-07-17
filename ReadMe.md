@@ -9,7 +9,7 @@ Please make sure NodeJs is installed.
 ## Getting Started
 
 1. Make a copy of the project or clone this git repository on your local machine for development and testing purposes.
-2. Open index.js and change the variable ``var IP_ADDRESS = "192.168.1.53";`` and ``var PORT = 8765;`` to set the IP-Address and Port of the diagnose server.
+2. Open ``index.js`` and change the variable ``var IP_ADDRESS = "192.168.1.53";`` and ``var PORT = 8765;`` to set the IP-Address and Port of the diagnose server.
 3. Run the following command:
 ```
 npm update
