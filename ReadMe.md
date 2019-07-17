@@ -18,7 +18,7 @@ npm update
 ```
 npm start
 ```
-5. A new Folder with the name ``data`` will be created and the transmitted images will be stored inside.
+5. A new folder with the name ``"data"`` will be created and the transmitted images will be stored inside.
 
 ## Authors
 
