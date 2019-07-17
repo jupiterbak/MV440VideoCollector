@@ -1,6 +1,7 @@
-OPEN_ACCESS
+MV440 Image Collector
 ===
 To start:
+0. Open index.js and change the IP-Address
 1. npm update
 2. npm start
 ```
